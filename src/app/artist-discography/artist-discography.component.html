@@ -1,0 +1,48 @@
+<div class="centered" *ngIf="loading else loaded">
+    <div class="loadingio-spinner-ellipsis-etmnndnlycd">
+        <div class="ldio-zkl0nkfmux">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loaded>
+    <div>
+        <mat-card class="card">
+            <mat-card-content>
+                <mat-card-title>{{artist.name}}</mat-card-title>
+                <p>
+                    Full discography for {{artist.name}}<br>
+                    Click the <strong>album cover</strong> for more information.
+                </p>
+            </mat-card-content>
+            <div
+                [style.background]="'url(' + artist.images[0].url + ') no-repeat center center'"
+                [style.background-size]="'cover'" [style.height]="'450px'">
+            </div>
+        </mat-card>
+    </div>
+
+    <br /><br />
+    <h1>Full Discography</h1>
+
+    <div fxLayout="row wrap" fxLayout.xs="column">
+        <div fxFlex [style.margin]="'20px'" *ngFor="let album of albums">
+            <mat-card [style.min-width]="'200px'">
+                <mat-card-header>
+                    <mat-card-title>{{album.name}}</mat-card-title>
+                    <mat-card-subtitle>Album Title</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image class="album-cover" [src]="album.images[0].url" alt="album art"
+                     [routerLink]="['/album', album.id]">
+                <strong>Release Date: </strong>{{this.utils.getFormattedDate(album.release_date)}}<br/>
+                <strong>Tracks: </strong>{{album.total_tracks}}<br/><br/>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>
+

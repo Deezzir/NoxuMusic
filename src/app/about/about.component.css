@@ -1,0 +1,11 @@
+.card {
+    max-width: 500px;
+}
+
+.social {
+    padding-top: 5%;
+}
+
+.social a span {
+    margin-left: 0.5rem;
+}
